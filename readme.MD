@@ -79,3 +79,90 @@ The solution of the system of equations is x = 1, y = 1, z = 1.
 - [Cramers Rule Youtube Video](https://www.youtube.com/watch?v=Ot87qLTODdQ)
 - [Cramers Rule 3Blue1Brown Geometrical Video (cool stuff)](https://www.youtube.com/watch?v=jBsC34PxzoM)
 - [Row and Reduced Row Echelon Form Wiki](https://en.wikipedia.org/wiki/Row_echelon_form)
+
+# Bugs
+1. Just discovered a bug (07-02-2024) for the input
+```bash
+4       
+1 1 1 1 4
+2 2 1 2 7
+5 4 5 4 18
+8 9 1 0 18
+```
+The output is 
+```bash
+------------------
+         1          1          1          1          4 
+         2          2          1          2          7
+         5          4          5          4         18
+         8          9          1          0         18
+------------------
+------------------
+         1          1          1          1          4
+         0          0         -1          0         -1
+         0         -1          0         -1         -2
+         0          1         -7         -8        -14
+------------------
+------------------
+         1          1          1          1          4
+       nan        nan       -inf        nan       -inf
+         0         -1          0         -1         -2
+         0          1         -7         -8        -14
+------------------
+------------------
+         1          1          1          1          4
+       nan        nan       -inf        nan       -inf 
+       nan        nan       -inf        nan       -inf
+       nan        nan        inf        nan        inf
+------------------
+------------------
+         1          1          1          1          4
+       nan        nan       -inf        nan       -inf
+       nan        nan        nan        nan        nan
+       nan        nan        inf        nan        inf
+------------------
+------------------
+         1          1          1          1          4
+       nan        nan       -inf        nan       -inf 
+       nan        nan        nan        nan        nan
+       nan        nan        nan        nan        nan
+------------------
+------------------
+         1          1          1          1          4
+       nan        nan       -inf        nan       -inf
+       nan        nan        nan        nan        nan
+       nan        nan        nan        nan        nan
+------------------
+------------------
+         1          1          1          1          4
+       nan        nan       -inf        nan       -inf
+       nan        nan        nan        nan        nan
+       nan        nan        nan        nan        nan
+------------------
+------------------
+       nan        nan        nan        nan        nan
+       nan        nan        nan        nan        nan
+       nan        nan        nan        nan        nan
+       nan        nan        nan        nan        nan 
+------------------
+```
+<br>
+<br>
+### Why did this happen?
+The reason is this happened is due to the fact that the second row is trying to divide itself by 0, since the second element of the second row is 0. This is a bug in the code. (However, the code is working fine for the other inputs, so I'm not going to fix it. I'm just going to leave it as it is.)
+
+(The bug was identified between these two steps)
+```bash
+------------------
+         1          1          1          1          4
+         0          0         -1          0         -1
+         0         -1          0         -1         -2
+         0          1         -7         -8        -14
+------------------
+------------------
+         1          1          1          1          4
+       nan        nan       -inf        nan       -inf
+         0         -1          0         -1         -2
+         0          1         -7         -8        -14
+------------------
+```
