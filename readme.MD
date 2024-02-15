@@ -148,7 +148,8 @@ The output is
 ```
 <br>
 <br>
-### Why did this happen?
+
+## Why did this happen?
 The reason is this happened is due to the fact that the second row is trying to divide itself by 0, since the second element of the second row is 0. This is a bug in the code. (However, the code is working fine for the other inputs, so I'm not going to fix it. I'm just going to leave it as it is.)
 
 (The bug was identified between these two steps)
