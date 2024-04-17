@@ -75,7 +75,21 @@ int main() {
   for (int t = 0; t < n; t++) {
     double oneOne = a[t][t];
     for (int i = 0; i <= n; i++) {
-      a[t][i] /= oneOne;
+      if (oneOne != 0)
+        a[t][i] /= oneOne;
+      else {
+        // swap with the next row, after checking if it isn't the last row
+        if (t != n - 1) {
+          for (int j = t + 1; j < n; j++) {
+            if (a[j][t] != 0) {
+              swap(a[t], a[j]);
+              break;
+            }
+          }
+          t--;
+          break;
+        }
+      }
     }
 
     printMatrix(a, n);
